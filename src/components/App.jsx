@@ -15,6 +15,11 @@ function App() {
     });
     setInputText("");
   }
+
+  function deleteItem(item) {
+    const newList = items.filter((e) => e != item);
+    setItems(newList);
+  }
   return (
     <div className="container">
       <div className="heading">
@@ -28,8 +33,13 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((toDoItem) => {
-            return <li>{toDoItem}</li>;
+          {items.map((toDoItem, index) => {
+            return (
+              <li key={index}>
+                {toDoItem}
+                <button onClick={() => deleteItem(toDoItem)}>Delete</button>
+              </li>
+            );
           })}
         </ul>
       </div>
